@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume & Portfolio Builder</title>
+    <!-- 귀엽고 둥글둥글한 웹 폰트 '배달의민족 주아(Jua)' -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- 상단 헤더: 깨끗하고 선명한 단색 폰트 (노이즈/잔상 일체 제거) -->
+        <header class="header">
+            <h1 class="main-title">📄 AI Resume & Portfolio Builder</h1>
+            <p class="sub-title">왼쪽 양식을 작성하고 생성 버튼을 누르면 이곳에 AI가 작성한 결과가 표시됩니다.</p>
+        </header>
+
+        <!-- 본문 2열 그리드 레이아웃 -->
+        <main class="main-content">
+            <!-- 왼쪽: 정보 입력 섹션 -->
+            <section class="form-section">
+                <div class="section-title-wrap">
+                    <h2>정보 입력</h2>
+                    <!-- 투명 누끼 픽셀 안경만두 메인 캐릭터 (sample2_transparent.png) -->
+                    <div class="mandoo-badge-wrap">
+                        <img id="mandooChar" src="{{ url_for('static', filename='images/sample2_transparent.png') }}" alt="투명 누끼 안경만두" class="pixel-mandoo-avatar">
+                        <span id="mandooSpeech" class="mandoo-speech">안녕! 난 안경만두야! 🥟</span>
+                    </div>
+                </div>
+
+                <form id="builderForm">
+                    <!-- 1. 이름 -->
+                    <div class="form-group">
+                        <label for="name">Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" placeholder="e.g., Hong Gil-dong" required>
+                    </div>
+
+                    <!-- 2. 지원 직무 -->
+                    <div class="form-group">
+                        <label for="role">지원 직무 <span class="required">*</span></label>
+                        <input type="text" id="role" name="role" placeholder="e.g., Back-end Developer, Data Engineer" required>
+                    </div>
+
+                    <!-- 3. 경력 및 활동 사항 -->
+                    <div class="form-group">
+                        <label for="experience">경력 및 활동 사항 <span class="required">*</span></label>
+                        <textarea id="experience" name="experience" rows="3" placeholder="주요 담당 업무와 경력을 자유롭게 입력하세요." required></textarea>
+                    </div>
+
+                    <!-- 4. 주요 프로젝트 경험 -->
+                    <div class="form-group">
+                        <label for="projects">주요 프로젝트 경험 <span class="required">*</span></label>
+                        <textarea id="projects" name="projects" rows="4" placeholder="프로젝트명, 기술 스택, 핵심 역할, 문제 해결 경험을 입력하세요." required></textarea>
+                    </div>
+
+                    <!-- 5. 글의 톤 -->
+                    <div class="form-group">
+                        <label for="tone">Write Tone (Tone) Select</label>
+                        <select id="tone" name="tone">
+                            <option value="전문적이고 신뢰감 있는">전문적이고 신뢰감 있는 (기본)</option>
+                            <option value="열정적이고 적극적인">열정적이고 적극적인</option>
+                            <option value="차분하고 논리적인">차분하고 논리적인</option>
+                            <option value="간결하고 핵심적인">간결하고 핵심적인</option>
+                        </select>
+                    </div>
+
+                    <!-- 6. 작성 스타일 (Prompt Mode) -->
+                    <div class="form-group">
+                        <label>Write Style (Prompt Mode)</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="prompt_type" value="A" checked>
+                                <div>
+                                    <strong>Prompt A (일반 모드)</strong>
+                                    <p class="desc">가독성 높고 이해하기 쉬운 표준 이력서/포트폴리오</p>
+                                </div>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="prompt_type" value="B">
+                                <div>
+                                    <strong>Prompt B (전문가 모드)</strong>
+                                    <p class="desc">STAR 기법 기반, 구체적 수치와 성과 중심</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 제출 버튼 (다크 레드 그라데이션) -->
+                    <button type="submit" id="generateBtn" class="btn btn-primary">
+                        ✨ AI Resume & Portfolio Builder Generate
+                    </button>
+                </form>
+            </section>
+
+            <!-- 오른쪽: 생성 결과 섹션 -->
+            <section class="result-section">
+                <div class="result-header">
+                    <h2>생성 결과</h2>
+                    <div class="action-buttons" id="actionButtons" style="display: none;">
+                        <button type="button" id="copyBtn" class="btn btn-secondary">📋 복사하기</button>
+                        <button type="button" id="downloadBtn" class="btn btn-secondary">💾 .md 다운로드</button>
+                    </div>
+                </div>
+
+                <!-- 안내 문구 (sample3 원본 안경만두 3마리: 투명 누끼 적용 & 중앙 정렬) -->
+                <div id="emptyState" class="empty-state">
+                    <p class="empty-point">👉 왼쪽 양식을 작성하고 생성 버튼을 누르면 이곳에 AI가 작성한 결과가 표시됩니다.</p>
+                    <div class="mandoo-deco-list">
+                        <img src="{{ url_for('static', filename='images/mandoo_stand1.png') }}" class="deco-mandoo-plate" alt="서 있는 안경만두 1">
+                        <img src="{{ url_for('static', filename='images/mandoo_lie.png') }}" class="deco-mandoo-plate" alt="누워있는 안경만두">
+                        <img src="{{ url_for('static', filename='images/mandoo_stand2.png') }}" class="deco-mandoo-plate" alt="서 있는 안경만두 2">
+                    </div>
+                </div>
+
+                <!-- 투명 누끼 픽셀 안경만두 로딩 애니메이션 (뒤뚱뒤뚱 댄스) -->
+                <div id="loadingArea" class="loading-area" style="display: none;">
+                    <div class="mandoo-waddle-box">
+                        <img src="{{ url_for('static', filename='images/sample2_transparent.png') }}" class="pixel-mandoo-waddle" alt="작성중인 투명 누끼 안경만두">
+                    </div>
+                    <p class="loading-main-text">🥟 안경만두가 이력서를 열심히 작성하고 있어요! ✨</p>
+                    <p class="loading-sub">조금만 기다려줘만두... (약 5~10초)</p>
+                </div>
+
+                <!-- 오류 메시지 박스 -->
+                <div id="errorArea" class="error-area" style="display: none;">
+                    <p class="error-title">⚠️ 오류가 발생했습니다</p>
+                    <p id="errorMessage" class="error-text"></p>
+                </div>
+
+                <!-- 생성 결과 출력 영역 (마크다운 렌더링) -->
+                <div id="outputArea" class="output-area" style="display: none;">
+                    <div id="resultText" class="markdown-body"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 마크다운 파서 및 자바스크립트 로직 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

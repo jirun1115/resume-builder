@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- 몸통 (뽀얗고 노릇한 만두) -->
+  <ellipse cx="50" cy="58" rx="36" ry="30" fill="#FFE599" stroke="#E6B800" stroke-width="3"/>
+  
+  <!-- 만두 꼭지 주름 (위쪽 3개 뿔) -->
+  <circle cx="50" cy="27" r="6" fill="#FFE599" stroke="#E6B800" stroke-width="2.5"/>
+  <circle cx="40" cy="30" r="5" fill="#FFE599" stroke="#E6B800" stroke-width="2.5"/>
+  <circle cx="60" cy="30" r="5" fill="#FFE599" stroke="#E6B800" stroke-width="2.5"/>
+
+  <!-- 개발자 헤드셋 (머리 밴드) -->
+  <path d="M 16 56 Q 50 18 84 56" fill="none" stroke="#2563EB" stroke-width="5" stroke-linecap="round"/>
+  <!-- 헤드셋 귀마개 -->
+  <rect x="10" y="50" width="10" height="18" rx="4" fill="#1D4ED8" stroke="#1E3A8A" stroke-width="2"/>
+  <rect x="80" y="50" width="10" height="18" rx="4" fill="#1D4ED8" stroke="#1E3A8A" stroke-width="2"/>
+  <!-- 마이크 붐대 -->
+  <path d="M 20 64 Q 30 75 42 72" fill="none" stroke="#333333" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="43" cy="72" r="3" fill="#10B981"/>
+  
+  <!-- 눈썹 (코딩에 집중하는 모양) -->
+  <line x1="33" y1="45" x2="40" y2="47" stroke="#5C3D00" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="67" y1="45" x2="60" y2="47" stroke="#5C3D00" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- 뿔테 안경 (개발자 블루 포인트) -->
+  <rect x="26" y="49" width="20" height="15" rx="3" fill="#FFFFFF" stroke="#1E293B" stroke-width="3.5"/>
+  <rect x="54" y="49" width="20" height="15" rx="3" fill="#FFFFFF" stroke="#1E293B" stroke-width="3.5"/>
+  <line x1="46" y1="56" x2="54" y2="56" stroke="#1E293B" stroke-width="3.5"/>
+  
+  <!-- 눈 (집중하는 반짝 눈) -->
+  <circle cx="36" cy="56" r="4.5" fill="#111111"/>
+  <circle cx="34" cy="54" r="1.5" fill="#FFFFFF"/>
+  <circle cx="64" cy="56" r="4.5" fill="#111111"/>
+  <circle cx="62" cy="54" r="1.5" fill="#FFFFFF"/>
+
+  <!-- 발그레한 볼터치 -->
+  <ellipse cx="28" cy="66" rx="4" ry="2.5" fill="#FF8A80" opacity="0.8"/>
+  <ellipse cx="72" cy="66" rx="4" ry="2.5" fill="#FF8A80" opacity="0.8"/>
+
+  <!-- 열정의 입 -->
+  <ellipse cx="50" cy="68" rx="3" ry="2" fill="#5C3D00"/>
+
+  <!-- 작은 발 두 개 -->
+  <ellipse cx="42" cy="88" rx="5" ry="4" fill="#FFE599" stroke="#E6B800" stroke-width="2"/>
+  <ellipse cx="58" cy="88" rx="5" ry="4" fill="#FFE599" stroke="#E6B800" stroke-width="2"/>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- 몸통 (뽀얗고 노릇한 만두) -->
+  <ellipse cx="50" cy="58" rx="36" ry="30" fill="#FFE599" stroke="#E6B800" stroke-width="3"/>
+  
+  <!-- 만두 꼭지 주름 (위쪽 3개 뿔) -->
+  <circle cx="50" cy="27" r="6" fill="#FFE599" stroke="#E6B800" stroke-width="2.5"/>
+  <circle cx="40" cy="30" r="5" fill="#FFE599" stroke="#E6B800" stroke-width="2.5"/>
+  <circle cx="60" cy="30" r="5" fill="#FFE599" stroke="#E6B800" stroke-width="2.5"/>
+  
+  <!-- 눈썹 (작고 귀여운 점) -->
+  <circle cx="37" cy="46" r="2" fill="#5C3D00"/>
+  <circle cx="63" cy="46" r="2" fill="#5C3D00"/>
+
+  <!-- 안경테 (두꺼운 뿔테 안경) -->
+  <rect x="26" y="49" width="20" height="15" rx="3" fill="#FFFFFF" stroke="#222222" stroke-width="3.5"/>
+  <rect x="54" y="49" width="20" height="15" rx="3" fill="#FFFFFF" stroke="#222222" stroke-width="3.5"/>
+  <line x1="46" y1="56" x2="54" y2="56" stroke="#222222" stroke-width="3.5"/>
+  
+  <!-- 안경알 속 초롱초롱한 눈 -->
+  <circle cx="36" cy="56" r="4.5" fill="#111111"/>
+  <circle cx="34" cy="54" r="1.5" fill="#FFFFFF"/>
+  <circle cx="64" cy="56" r="4.5" fill="#111111"/>
+  <circle cx="62" cy="54" r="1.5" fill="#FFFFFF"/>
+
+  <!-- 발그레한 볼터치 -->
+  <ellipse cx="28" cy="65" rx="4" ry="2.5" fill="#FF8A80" opacity="0.8"/>
+  <ellipse cx="72" cy="65" rx="4" ry="2.5" fill="#FF8A80" opacity="0.8"/>
+
+  <!-- 미소 짓는 입 -->
+  <path d="M 47 67 Q 50 71 53 67" fill="none" stroke="#5C3D00" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- 작은 발 두 개 -->
+  <ellipse cx="42" cy="88" rx="5" ry="4" fill="#FFE599" stroke="#E6B800" stroke-width="2"/>
+  <ellipse cx="58" cy="88" rx="5" ry="4" fill="#FFE599" stroke="#E6B800" stroke-width="2"/>
+</svg>

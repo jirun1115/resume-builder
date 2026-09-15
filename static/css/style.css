@@ -1,0 +1,567 @@
+/* ==========================================================================
+   AI Resume & Portfolio Builder - 나눔스퀘어 라운드(NanumSquareRound) 에디션
+   ========================================================================== */
+
+/* 1. 웹 폰트 로드: 동글동글하고 선명한 '나눔스퀘어 라운드(NanumSquareRound)' */
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRoundR.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRoundB.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRoundEB.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 2. 전역 스타일: 부드럽고 매끄러운 폰트 안티에일리어싱 적용 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'NanumSquareRound', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 3. 전체 배경: 작고 차분한 흰색 도트 패턴 */
+body {
+    background-color: #E53935; /* 베이스 레드 */
+    background-image: 
+        radial-gradient(#FFFFFF 5.5%, transparent 6.5%),
+        radial-gradient(#FFFFFF 5.5%, transparent 6.5%);
+    background-size: 52px 52px;
+    background-position: 0 0, 26px 26px;
+    color: #212121;
+    min-height: 100vh;
+    padding: 36px 16px 60px 16px;
+}
+
+.container {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+/* 4. 상단 헤더: 선명하고 동글동글한 고딕 타이틀 + 부드러운 텍스트 섀도우 */
+.header {
+    text-align: center;
+    margin-bottom: 28px;
+    background: transparent;
+}
+
+.main-title {
+    font-family: 'NanumSquareRound', sans-serif !important;
+    font-size: 2.2rem;
+    font-weight: 800; /* Extra Bold로 묵직하고 선명하게 */
+    color: #FFFFFF !important; /* 완전한 순백색 */
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    display: inline-block;
+    
+    /* 붉은 도트 배경 위에서 글씨가 묻히지 않도록 하는 부드럽고 깊이 있는 그림자 */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.35), 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sub-title {
+    font-family: 'NanumSquareRound', sans-serif !important;
+    color: #FFFFFF !important;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    opacity: 0.95;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 5. 메인 2열 그리드 레이아웃 */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+/* 6. 둥근 모서리(border-radius: 20px) 흰색 메인 카드 */
+.form-section, .result-section {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 30px 28px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+}
+
+/* 좌측 섹션 타이틀 & 픽셀 안경만두 아바타 박스 */
+.section-title-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #FEE2E2;
+}
+
+.form-section h2, .result-section h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #1F2937;
+    margin: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* 픽셀 아트 캐릭터 전용 선명 렌더링 */
+.pixel-mandoo-avatar,
+.pixel-mandoo-waddle,
+.deco-mandoo-plate {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* 픽셀 안경만두 메인 캐릭터: 하얀 네모 박스/그림자 투명화, 둥둥 애니메이션 보존 */
+.mandoo-badge-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.pixel-mandoo-avatar {
+    width: 68px;
+    height: 68px;
+    flex-shrink: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    filter: none !important;
+    animation: pixelMandooFloat 2.6s ease-in-out infinite;
+}
+
+@keyframes pixelMandooFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.mandoo-speech {
+    background: #FFFBEB;
+    border: 1.5px solid #FCD34D;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #B45309;
+    max-width: 220px;
+    height: auto;
+    white-space: normal;
+    word-break: keep-all;
+    line-height: 1.4;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+
+.mandoo-speech::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 6px solid #FCD34D;
+}
+
+/* 7. 폼 입력 요소들 */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.required {
+    color: #DC2626;
+    margin-left: 2px;
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 11px 14px;
+    background-color: #FAFAFA;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #1F2937;
+    transition: all 0.25s ease;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: #9CA3AF;
+    font-size: 0.9rem;
+}
+
+/* 포커스 시 다크 레드(#D32F2F) 테두리 & 부드러운 글로우 */
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    background-color: #FFFFFF;
+    border-color: #D32F2F;
+    box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.12);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.5;
+}
+
+/* 8. 라디오 버튼 카드 */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    background-color: #FAFAFA;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.radio-label:hover {
+    background-color: #FFF5F5;
+    border-color: #FECACA;
+}
+
+/* 선택된 라디오: 예쁜 연핑크 배경(#FFEBEE) & 다크 레드 테두리(#D32F2F) */
+.radio-label:has(input[type="radio"]:checked) {
+    border-color: #D32F2F;
+    background-color: #FFEBEE;
+    box-shadow: 0 2px 8px rgba(211, 47, 47, 0.08);
+}
+
+.radio-label input[type="radio"] {
+    margin-top: 3px;
+    accent-color: #D32F2F;
+    cursor: pointer;
+    width: 17px;
+    height: 17px;
+}
+
+.radio-label strong {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #B91C1C;
+}
+
+.radio-label .desc {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #6B7280;
+    margin-top: 2px;
+}
+
+/* 9. '생성하기' 버튼 (다크 레드 그라데이션) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #E53935 0%, #C62828 100%);
+    color: #FFFFFF;
+    margin-top: 10px;
+    box-shadow: 0 4px 14px rgba(211, 47, 47, 0.35);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #C62828 0%, #B71C1C 100%);
+    box-shadow: 0 6px 18px rgba(211, 47, 47, 0.45);
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    background: #9CA3AF;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secondary {
+    padding: 7px 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    background-color: #FFEBEE;
+    color: #C62828;
+    border: 1px solid #FFCDD2;
+}
+
+.btn-secondary:hover {
+    background-color: #FFCDD2;
+    transform: translateY(-1px);
+}
+
+/* 10. 우측 결과 헤더 & 액션 버튼 */
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #FEE2E2;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* 11. 초기 안내 화면 & sample3 3마리 안경만두 (투명 누끼 & 가로 정렬) */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px 30px 20px;
+    background-color: #FAFAFA;
+    border-radius: 14px;
+    border: 2px dashed #FECACA;
+}
+
+.empty-point {
+    color: #374151;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.mandoo-deco-list {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 18px;
+    margin-top: 10px;
+}
+
+.deco-mandoo-plate {
+    width: 88px;
+    height: auto;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    animation: none !important;
+    transition: transform 0.2s ease;
+}
+
+.deco-mandoo-plate:hover {
+    transform: translateY(-3px);
+}
+
+/* 12. 귀여운 픽셀 안경만두 로딩 애니메이션 (뒤뚱뒤뚱 댄스) */
+.loading-area {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.mandoo-waddle-box {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 16px auto;
+}
+
+.pixel-mandoo-waddle {
+    width: 100%;
+    height: 100%;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    animation: mandooWaddle 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+@keyframes mandooWaddle {
+    0% {
+        transform: translateX(-18px) rotate(-14deg) scale(0.96);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.04);
+    }
+    100% {
+        transform: translateX(18px) rotate(14deg) scale(0.96);
+    }
+}
+
+.loading-main-text {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #C62828;
+    margin-bottom: 6px;
+}
+
+.loading-sub {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #6B7280;
+}
+
+/* 13. 에러 박스 */
+.error-area {
+    background-color: #FEF2F2;
+    border: 1.5px solid #FECACA;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.error-title {
+    color: #DC2626;
+    font-size: 0.95rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.error-text {
+    color: #B91C1C;
+    font-size: 0.88rem;
+    font-weight: 400;
+}
+
+/* 14. 마크다운 결과 출력창 */
+.output-area {
+    background-color: #FAFAFA;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 14px;
+    padding: 22px;
+    max-height: 560px;
+    overflow-y: auto;
+}
+
+.markdown-body {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #1F2937;
+}
+
+.markdown-body h1 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #C62828;
+    border-bottom: 2px solid #FECACA;
+    padding-bottom: 8px;
+    margin-top: 18px;
+    margin-bottom: 12px;
+}
+
+.markdown-body h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #D32F2F;
+    border-bottom: 1.5px dashed #FEE2E2;
+    padding-bottom: 6px;
+    margin-top: 16px;
+    margin-bottom: 10px;
+}
+
+.markdown-body h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #374151;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.markdown-body p {
+    margin-bottom: 12px;
+}
+
+.markdown-body ul, .markdown-body ol {
+    padding-left: 20px;
+    margin-bottom: 14px;
+}
+
+.markdown-body li {
+    margin-bottom: 6px;
+}
+
+.markdown-body strong {
+    color: #B91C1C;
+    font-weight: 800;
+}
+
+.markdown-body blockquote {
+    border-left: 4px solid #D32F2F;
+    padding: 8px 14px;
+    color: #4B5563;
+    margin: 12px 0;
+    background-color: #FFEBEE;
+    border-radius: 0 8px 8px 0;
+}
+
+/* 15. 모바일 반응형 */
+@media (max-width: 768px) {
+    body {
+        padding: 16px 10px;
+    }
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    .form-section, .result-section {
+        padding: 20px 16px;
+    }
+    .mandoo-deco-list {
+        gap: 10px;
+    }
+    .deco-mandoo-plate {
+        width: 72px;
+    }
+    .main-title {
+        font-size: 1.8rem;
+    }
+}
