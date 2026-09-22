@@ -9,6 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- PWA (Progressive Web App) 메타데이터 및 매니페스트 설정 -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ff5252">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="안경만두 이력서">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/sample2_transparent.png') }}">
 </head>
 <body>
     <div class="container">
@@ -141,5 +149,16 @@
     <!-- 마크다운 파서 및 자바스크립트 로직 -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+    <!-- PWA Service Worker 등록 스크립트 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                    .then((reg) => console.log('PWA Service Worker 등록 성공:', reg.scope))
+                    .catch((err) => console.warn('PWA Service Worker 등록 실패:', err));
+            });
+        }
+    </script>
 </body>
 </html>

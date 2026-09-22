@@ -1,6 +1,6 @@
 import os
 import logging
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, make_response
 from dotenv import load_dotenv
 from google import genai
 
@@ -31,6 +31,19 @@ else:
 @app.route("/")
 def index():
     return render_template("index.html")
+
+# 5-1. PWA 매니페스트 라우트
+@app.route("/manifest.json")
+def manifest():
+    return app.send_static_file("manifest.json")
+
+# 5-2. PWA 서비스 워커 라우트 (루트 스코프 권한 헤더 포함)
+@app.route("/sw.js")
+def service_worker():
+    response = make_response(app.send_static_file("sw.js"))
+    response.headers["Content-Type"] = "application/javascript"
+    response.headers["Service-Worker-Allowed"] = "/"
+    return response
 
 # 6. 생성(/generate) 라우트: AI 이력서 및 포트폴리오 생성 API
 @app.route("/generate", methods=["POST"])

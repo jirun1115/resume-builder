@@ -1,0 +1,23 @@
+{
+  "name": "AI Resume & Portfolio Builder (안경만두 에디션)",
+  "short_name": "ResumeBuilder",
+  "description": "Google Gemini API 기반의 스마트한 국/영문 이력서 및 포트폴리오 빌더",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#ff5252",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/static/images/sample2_transparent.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static/images/pixel_mandoo_glasses.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
