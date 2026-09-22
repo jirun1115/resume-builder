@@ -2,7 +2,7 @@ import os
 import logging
 from flask import Flask, render_template, request, jsonify
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
 
 # 1. 환경변수(.env) 로드
 load_dotenv()
@@ -20,11 +20,12 @@ app = Flask(__name__)
 
 # 4. Gemini API Key 확인 및 설정
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+client = None
 
 if not GEMINI_API_KEY:
     logger.warning("경고: GEMINI_API_KEY가 .env 파일에 설정되어 있지 않습니다.")
 else:
-    genai.configure(api_key=GEMINI_API_KEY)
+    client = genai.Client(api_key=GEMINI_API_KEY)
 
 # 5. 루트(/) 라우트: 메인 웹 페이지 렌더링
 @app.route("/")
@@ -114,9 +115,11 @@ def generate():
 
         full_prompt = f"{system_instruction}\n\n{user_content}"
 
-        # [6] Gemini API 호출 (gemini-3.5-flash-lite 모델)
-        model = genai.GenerativeModel("gemini-3.5-flash-lite")
-        response = model.generate_content(full_prompt)
+        # [6] Gemini API 호출 (과부하가 적고 빠른 gemini-3.5-flash-lite 모델)
+        response = client.models.generate_content(
+            model="gemini-3.5-flash-lite",
+            contents=full_prompt,
+        )
 
         result_text = response.text
 
